@@ -81,7 +81,6 @@ class TestUserRegister2(BaseCase):
         }
 
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
-        print(response.text)
 
         Assertions.assert_cod_status(response, 400)
         assert response.text == "The value of 'username' field is too short", f"{username} error has not been appeared"
@@ -97,7 +96,6 @@ class TestUserRegister2(BaseCase):
             'email': self.email
         }
 
-        print(user_name)
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
         Assertions.assert_cod_status(response, expected_status_code)
