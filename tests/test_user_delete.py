@@ -80,6 +80,7 @@ class TestUserDelete(BaseCase):
             'password': self.user2_password
         }
         response = requests.post("https://playground.learnqa.ru/api/user/login", data=data_user2)
+
         auth_sid = self.get_cookie(response, "auth_sid")
         token = self.get_headers(response, "x-csrf-token")
 

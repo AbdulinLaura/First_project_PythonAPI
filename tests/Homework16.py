@@ -30,14 +30,11 @@ class TestUserEditNegativeCheck(BaseCase):
         }
 
         response1 = requests.post('https://playground.learnqa.ru/api/user/login', data=login_data)
-
-        auth_sid = self.get_cookie(response1, "auth_sid")
-        token = self.get_headers(response1, "x-csrf-token")
         response = requests.put(
             f"https://playground.learnqa.ru/api/user/{self.user2_id}",
             data=new_data,
-            headers={"x-csrf-token": token},
-            cookies={"auth_sid": auth_sid}
+            headers={"x-csrf-token": ""},
+            cookies={"auth_sid": ""}
         )
         Assertions.assert_cod_status(response, 400)
 
