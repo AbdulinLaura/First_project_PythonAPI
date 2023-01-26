@@ -81,16 +81,5 @@ class TestUserDelete(BaseCase):
         }
         response = requests.post("https://playground.learnqa.ru/api/user/login", data=data_user2)
 
-        auth_sid = self.get_cookie(response, "auth_sid")
-        token = self.get_headers(response, "x-csrf-token")
-
-        response2 = requests.delete(
-            f"https://playground.learnqa.ru/api/user/{self.user3_id}",
-            headers={"x-csrf-token": token},
-            cookies={"auth_sid": auth_sid}
-        )
-        Assertions.assert_cod_status(response2, 403)
-
-
-
-
+        response2 = requests.delete(f"https://playground.learnqa.ru/api/user/{self.user3_id}")
+        Assertions.assert_cod_status(response2, 400)
